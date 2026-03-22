@@ -1,3 +1,4 @@
+import joblib
 from flask import Flask, request, jsonify, make_response
 from flask_cors import CORS
 import os
@@ -153,8 +154,6 @@ def predict():
         'feature_importance': model.feature_importances_.tolist(),
         'toxicity_hotspot': 'Aromatic amine ring highlighted'
     })
-    return render_template('predict.html')
-
 @app.route('/batch_predict', methods=['GET', 'POST'])
 def batch_predict():
     if request.method == 'POST':
@@ -287,4 +286,4 @@ def generate_report():
     return jsonify({'error': 'Method not allowed'}), 405
 
 if __name__ == '__main__':
-    app.run(debug=True)
+app.run()
